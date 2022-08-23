@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChronicPainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('index');
+})->name('index');
+Route::get('/chronicpain', function () {
+    return view('chronicpain');
+})->name('chronicpain');
+
+Route::get('/paindetect', function () {
+    return view('paindetect');
+})->name('pain');
+
+Route::post('/paind', [ChronicPainController::class, 'cretatePatient'])->name('paindetect');
+
+Route::post('/index/patient', [ChronicPainController::class, 'cretatePatientIndex'])->name('index');
+
+Route::post('/index/pain', [ChronicPainController::class, 'cretatePatientPainDetect'])->name('createpatient');
